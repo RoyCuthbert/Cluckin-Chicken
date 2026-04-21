@@ -1,0 +1,1 @@
+web: gunicorn cluckin_chicken.wsgi
