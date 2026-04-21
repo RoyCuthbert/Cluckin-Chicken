@@ -26,10 +26,10 @@
     <header>
         <!-- Collapsible menu from Tablet 768px and lower (Bootstrap)-->
         <nav class="navbar navbar-expand-md navbar-dark bg-danger">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand text-warning fw-bold" href="/">
                     <!-- Logo from favicon file -->
-                    <img src="assets/images/favicon_io/favicon-32x32.png" alt="Logo" width="30" height="24"
+                    <img src="../static/images/favicon_io/favicon-32x32.png" alt="Logo" width="30" height="24"
                         class="d-inline-block align-text-top">
                     Cluckin Chicken
                 </a>
@@ -63,7 +63,8 @@
     <!-- Main -->
     <main class="container py-4">
         <hero>
-
+            <h1 class="text-danger">Welcome to Cluckin Chicken</h1>
+            <p>Best fried chicken in town 🍗</p>
         </hero>
     {% block content %}{% endblock %}
     </main>

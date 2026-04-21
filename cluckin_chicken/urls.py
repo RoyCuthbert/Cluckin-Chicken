@@ -23,7 +23,7 @@ from order import views as order_views
 from accounts import views as accounts_views
 
 urlpatterns = [
-    path('', core_views.core, name='core'),
+    path('', core_views.home, name='core'),
     path('menu/', menu_views.menu, name = 'menu'),
     path('booking/', booking_views.booking, name = 'booking'),
     path('order/', order_views.order, name = 'order'),
