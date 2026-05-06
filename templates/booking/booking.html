@@ -3,7 +3,7 @@
 {% block content %}
 <h2 class="text-danger">Book a Table</h2>
 
-<form method="POST">
+<form action="{% url 'booking' %}" method="POST">
     {% csrf_token %}
     <input type="date" name="date" class="form-control mb-2">
     <input type="time" name="time" class="form-control mb-2">
