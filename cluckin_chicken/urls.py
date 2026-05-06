@@ -25,7 +25,7 @@ from accounts import views as accounts_view
 urlpatterns = [
     path('', core_view.home, name='core'),
     path('menu/', menu_view.menu, name = 'menu'),
-    path('booking/', booking_view.Booking, name = 'booking'),
+    path('booking/', booking_view.booking_view, name = 'booking'),
     path('order/', order_view.order, name = 'order'),
     path('accounts/', accounts_view.accounts, name='accounts'),
     path('admin/', admin.site.urls),

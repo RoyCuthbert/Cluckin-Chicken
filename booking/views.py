@@ -4,10 +4,14 @@ from .models import Booking
 # Create your views here.
 def booking_view(request):
     if request.method == 'POST':
+        date = request.POST.get('date'),
+        time = request.POST.get('time'),
+        guests = request.POST.get('guests')
+
         Booking.objects.create(
-            date = request.POST['date'],
-            time = request.POST['time'],
-            guests = request.POST['guests']
+            date=date,
+            time=time,
+            guests=guests
         )
         return redirect('booking')
 

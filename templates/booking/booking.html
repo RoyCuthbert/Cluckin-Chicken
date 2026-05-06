@@ -5,10 +5,9 @@
 
 <form method="POST">
     {% csrf_token %}
-    <input name="user" class="form-control mb-2" placeholder="Name">
     <input type="date" name="date" class="form-control mb-2">
     <input type="time" name="time" class="form-control mb-2">
     <input type="number" name="guests" class="form-control mb-2">
-    <button class="btn btn-danger w-100">Book</button>
+    <button class="btn btn-danger w-100" type="submit">Book</button>
 </form>
 {% endblock %}
