@@ -16,7 +16,9 @@
                 <h5>{{ item.name }}</h5>
                 <p>{{ item.description }}</p>
                 <strong>£{{ item.price }}</strong>
-                <button class="btn btn-warning w-100">Add to Cart</button>
+                <a href="{% url 'add_to_cart' item.id %}"
+                class="btn btn-warning w-100">Add to Cart
+                </a>
             </div>
         </div>
     </div>

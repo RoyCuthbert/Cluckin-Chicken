@@ -56,11 +56,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/contact/">Contact Us</a>
                         </li>
-                        <a class="nav-link text-white position-relative" href="#"><i class="fa-solid fa-cart-arrow-down"></i>Cart
+                        <button class="btn btn-warning position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"><i class="fa-solid fa-cart-arrow-down"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
                             {{ request.session.cart|length }}
                         </span>
-                        </a>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -85,6 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
+    {% include 'orders/cart.html' %}
 </body>
 
 </html>

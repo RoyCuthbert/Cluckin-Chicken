@@ -22,11 +22,13 @@ from booking import views as booking_view
 from core import views as contact_view
 from accounts import views as accounts_view
 
+
 urlpatterns = [
-    path('', core_view.home, name='core'),
+    path('', core_view.home, name='home'),
     path('menu/', menu_view.menu, name = 'menu'),
     path('booking/', booking_view.booking_view, name = 'booking'),
     path('contact/', contact_view.contact, name = 'contact'),
     path('accounts/', accounts_view.accounts, name='accounts'),
+    path('cart/', include('order.urls')),
     path('admin/', admin.site.urls),
 ]

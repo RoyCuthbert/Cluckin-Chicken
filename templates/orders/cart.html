@@ -1,0 +1,40 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer">
+
+    <div class="offcanvas-header">
+        <h5>Your Basket</h5>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas">
+        </button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        {% if request.session.cart %}
+
+            <ul class="list-group">
+
+                {% for key, value in request.session.cart.items %}
+
+                    <li class="list-group-item d-flex justify-content-between">
+
+                        Item ID: {{ key }}
+
+                        <span>x{{ value }}</span>
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>Your basket is empty.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
