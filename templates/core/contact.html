@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-danger mb-4">Contact Us</h1>
+
+    <div class="card p-4 shadow">
+
+        <p><strong>Phone:</strong> 01234 567890</p>
+
+        <p><strong>Email:</strong> enquiries@cluckinchicken.com</p>
+
+        <p><strong>Address:</strong><br>
+        Cluckin Chicken<br>
+        Basingstoke, UK</p>
+
+        <hr>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input class="form-control mb-3" type="text" placeholder="Your Name">
+
+            <input class="form-control mb-3" type="email" placeholder="Your Email">
+
+            <textarea class="form-control mb-3" rows="5" placeholder="Message"></textarea>
+
+            <button class="btn btn-danger">
+                Send Message
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
