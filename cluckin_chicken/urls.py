@@ -21,6 +21,8 @@ from menu import views as menu_view
 from booking import views as booking_view
 from core import views as contact_view
 from accounts import views as accounts_view
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -32,3 +34,5 @@ urlpatterns = [
     path('cart/', include('order.urls')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
