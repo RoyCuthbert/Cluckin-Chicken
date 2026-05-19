@@ -5,9 +5,11 @@
 
 <form action="{% url 'booking' %}" method="POST">
     {% csrf_token %}
+    <input type="text" name="name" class="form-control mb-2" placeholder="Enter Full Name" required>
+    <input type="email" name="email" class="form-control mb-2" placeholder="Email" >
     <input type="date" name="date" class="form-control mb-2">
     <input type="time" name="time" class="form-control mb-2">
-    <input type="number" name="guests" class="form-control mb-2">
+    <input type="number" name="guests" class="form-control mb-2" placeholder="Guests">
     <button class="btn btn-danger w-100" type="submit">Book</button>
 </form>
 {% endblock %}
