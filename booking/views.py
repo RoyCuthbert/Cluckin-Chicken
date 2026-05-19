@@ -22,8 +22,10 @@ def booking_view(request):
             guests = guests,
         )
         messages.success(request, "Booking Successful!")
-        return redirect('booking')
+        return redirect('booking_success')
         
-        return redirect('booking')
 
     return render(request, 'booking/booking.html')
+
+def booking_success(request):
+    return render(request, 'booking/success.html')
