@@ -8,7 +8,8 @@ def booking_view(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         date = request.POST.get('date')
-        time = request.POST.get('time')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
         guests = request.POST.get('guests')
         
         if not name or not email:
@@ -18,7 +19,8 @@ def booking_view(request):
             name = name,
             email = email,
             date = date,
-            time = time,
+            start_time = start_time,
+            end_time = end_time,
             guests = guests,
         )
         messages.success(request, "Booking Successful!")

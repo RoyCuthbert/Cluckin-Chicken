@@ -9,7 +9,7 @@
     <div class="col-md-4 mb-4">
           <div class="card">
             {% if item.image %}
-                <img src="{{ item.image.url }}" class="card-img-top">
+                <img src="{{ item.image.url }}" class="card-img-top"  style="height:250px; object-fit:cover;">
             {% else %}
                 <img src="/media/default.jpg" class="card-img-top">
             {% endif %}
