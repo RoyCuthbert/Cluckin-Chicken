@@ -8,11 +8,11 @@ class Category(models.Model):
         return self.name
 
 class MenuItem(models.Model):
-    Category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    Category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='menu/', default='default.jpg', blank =True, null=True)
+    image = models.ImageField(upload_to='menu/', default="{% static 'images/favicon_io/favicon-32x32.png' %}", blank =True, null=True)
 
     def __str__(self):
         return self.name

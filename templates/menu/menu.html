@@ -1,28 +1,73 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
-
 {% block content %}
-<h1 class="text-danger">Menu</h1>
+
+<h2 class="text-danger mb-4">Menu</h2>
+
+{% for category in categories %}
+
+<h3 class="text-danger mt-5 mb-3">{{ category.name }}</h3>
+
+{% if category.name == "Drinks" %}
+
+<!-- DRINKS LIST -->
+
+<ul class="list-group mb-5">
+  {% for item in category.menuitem_set.all %}
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span> {{ item.name }} </span>
+
+    <strong> £{{ item.price }} </strong>
+  </li>
+
+  {% endfor %}
+</ul>
+
+{% else %}
+
+<!-- FOOD CARDS -->
 
 <div class="row">
-    {% for item in items %}
-    <div class="col-md-4 mb-4">
-          <div class="card">
-            {% if item.image %}
-                <img src="{{ item.image.url }}" class="card-img-top"  style="height:250px; object-fit:cover;">
-            {% else %}
-                <img src="/media/default.jpg" class="card-img-top">
-            {% endif %}
-            <div class="card-body">
-                <h5>{{ item.name }}</h5>
-                <p>{{ item.description }}</p>
-                <strong>£{{ item.price }}</strong>
-                <a href="{% url 'add_to_cart' item.id %}"
-                class="btn btn-warning w-100">Add to Cart
-                </a>
-            </div>
-        </div>
+  {% for item in category.menuitem_set.all %}
+
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      {% if item.image %}
+
+      <img
+        src="{{ item.image.url }}"
+        class="card-img-top"
+        style="height: 220px; object-fit: cover"
+      />
+
+      {% else %}
+
+      <img
+        src="{% static 'images/default.png' %}"
+        class="card-img-top"
+        style="height: 220px; object-fit: cover"
+      />
+      {% endif %}
+
+      <div class="card-body d-flex flex-column">
+        <h5>{{ item.name }}</h5>
+
+        <p>{{ item.description }}</p>
+
+        <strong class="mb-3"> £{{ item.price }} </strong>
+
+        <a
+          href="{% url 'add_to_cart' item.id %}"
+          class="btn btn-warning mt-auto"
+        >
+          Add to Cart
+        </a>
+      </div>
     </div>
-    {% endfor %}
+  </div>
+
+  {% endfor %}
 </div>
-{% endblock %}
+
+{% endif %} {% endfor %} {% endblock %}
