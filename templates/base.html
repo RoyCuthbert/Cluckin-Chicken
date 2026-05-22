@@ -85,19 +85,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
-    {% include 'orders/cart.html' %}
-    <script>
+    <!-- Custom JS File -->
+     <script>
 
-    if (window.location.search.includes('cart=open')) {
+document.addEventListener('DOMContentLoaded', function () {
 
-        const cartDrawer = new bootstrap.Offcanvas(
-            document.getElementById('cartDrawer')
-        );
+    const params = new URLSearchParams(window.location.search);
 
-        cartDrawer.show();
+    if (params.get('cart') === 'open') {
+
+        const cartDrawer = document.getElementById('cartDrawer');
+
+        if (cartDrawer) {
+
+            const offcanvas = new bootstrap.Offcanvas(cartDrawer);
+
+            offcanvas.show();
+        }
     }
 
+});
+
 </script>
+    {% include 'orders/cart.html' %}
 </body>
 
 </html>
