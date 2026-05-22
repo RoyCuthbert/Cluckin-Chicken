@@ -1,46 +1,89 @@
-<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer">
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     id="cartDrawer">
 
     <div class="offcanvas-header">
+
         <h5>Your Basket</h5>
 
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas">
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas">
         </button>
+
     </div>
 
     <div class="offcanvas-body">
 
         {% if cart_items %}
 
-        {% for cart in cart_items %}
+            {% for cart in cart_items %}
 
-        <div class="card mb-3 shadow-sm border-0">
-            <div class="card-body">
-                <h5>{{ cart.item.name }}</h5>
-                <div class="list-group-item d-flex justify-content-between">
+                <div class="border-bottom mb-3 pb-3">
 
-                    <span>Qty: {{ cart.quantity }}</span>
+                    <h6>
 
-                    <strong>£{{ cart.item.price}}</strong>
-                    <strong>£{{ cart.subtotal }}</strong>
+                        {{ cart.item.name }}
+
+                    </h6>
+
+                    <p>
+
+                        £{{ cart.item.price }}
+
+                    </p>
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <a href="{% url 'decrease_cart' cart.item.id %}?cart=open"
+                           class="btn btn-sm btn-outline-danger">
+
+                            -
+
+                        </a>
+
+                        <span>
+
+                            {{ cart.quantity }}
+
+                        </span>
+
+                        <a href="{% url 'add_to_cart' cart.item.id %}?cart=open"
+                           class="btn btn-sm btn-outline-success">
+
+                            +
+
+                        </a>
+
+                    </div>
+
+                    <p class="mt-2">
+
+                        Subtotal:
+                        £{{ cart.subtotal }}
+
+                    </p>
+
+                    <a href="{% url 'remove_from_cart' cart.item.id %}?cart=open"
+                       class="btn btn-sm btn-danger">
+
+                        Remove
+
+                    </a>
+
                 </div>
-            </div>
-        </div>
 
-        {% endfor %}
+            {% endfor %}
 
-        <hr>
+            <h5>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <h5>Total</h5>
+                Total: £{{ total_price }}
 
-            <h5 class="text-danger">
-                £{{ total_price }}
             </h5>
-        </div>
 
         {% else %}
 
-        <p>Your basket is empty.</p>
+            <p>Your basket is empty.</p>
 
         {% endif %}
 

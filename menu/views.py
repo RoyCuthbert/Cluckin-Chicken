@@ -3,26 +3,39 @@ from .models import MenuItem, Category
 
 # Create your views here.
 def menu(request):
+
     categories = Category.objects.all()
-    items = MenuItem.objects.all()
+
     cart = request.session.get('cart', {})
+
     cart_items = []
-    total_price = 0
 
-    item_ids = [int(id) for id in cart.keys()]
+    total = 0
 
-    menu_items = MenuItem.objects.filter(id__in=item_ids)
+    for item_id, quantity in cart.items():
 
-    for item in menu_items:
+        try:
 
-        quantity = cart[str(item.id)]
-        subtotal = item.price * quantity
-        total_price += subtotal
+            item = MenuItem.objects.get(id=item_id)
 
-        cart_items.append({
-            'item': item,
-            'quantity': quantity,
-            'subtotal': subtotal
-        })
+            subtotal = item.price * quantity
 
-    return render(request, 'menu/menu.html', {'categories':categories, 'items':items, 'cart': cart, 'cart_items': cart_items, 'total_price': total_price})
+            total += subtotal
+
+            cart_items.append({
+                'item': item,
+                'quantity': quantity,
+                'subtotal': subtotal,
+            })
+
+        except MenuItem.DoesNotExist:
+
+            pass
+
+    return render(request, 'menu/menu.html', {
+
+        'categories': categories,
+        'cart_items': cart_items,
+        'total_price': total,
+
+    })

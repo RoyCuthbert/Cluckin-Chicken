@@ -56,7 +56,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/contact/">Contact Us</a>
                         </li>
-                        <button class="btn btn-warning position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"><i class="fa-solid fa-cart-arrow-down"></i>
+                        <button class="btn btn-warning position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"><i class="fa-solid fa-cart-shopping"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
                             {{ request.session.cart|length }}
                         </span>
@@ -86,6 +86,18 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
     {% include 'orders/cart.html' %}
+    <script>
+
+    if (window.location.search.includes('cart=open')) {
+
+        const cartDrawer = new bootstrap.Offcanvas(
+            document.getElementById('cartDrawer')
+        );
+
+        cartDrawer.show();
+    }
+
+</script>
 </body>
 
 </html>
