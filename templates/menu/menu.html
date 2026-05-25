@@ -20,7 +20,7 @@
         <h6 class="mb-1">{{ item.name }}</h6>
         <strong>£{{ item.price }}</strong>
       </div>
-        <a href="{% url 'add_to_cart' item.id %}"
+        <a href="{% url 'update_cart' item.id 'add' %}"
            class="btn btn-warning btn-sm">Add</a>
       </div>
     </li>
@@ -62,7 +62,7 @@
         <strong class="mb-3"> £{{ item.price }} </strong>
 
         <a
-          href="{% url 'add_to_cart' item.id %}"
+          href="{% url 'update_cart' item.id 'add' %}"
           class="btn btn-warning mt-auto"
         >
           Add to Cart

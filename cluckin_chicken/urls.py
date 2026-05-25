@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views as core_view
-from core import views as contact_view
 from accounts import views as accounts_view
 from django.conf.urls.static import static
 from django.conf import settings
@@ -27,8 +26,8 @@ urlpatterns = [
     path('', core_view.home, name='home'),
     path('menu/', include('menu.urls')),
     path('booking/', include('booking.urls')),
-    path('contact/', contact_view.contact, name = 'contact'),
     path('accounts/', accounts_view.accounts, name='accounts'),
+    path('contact/', core_view.contact, name='contact'),
     path('cart/', include('order.urls')),
     path('admin/', admin.site.urls),
 ]

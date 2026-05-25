@@ -23,6 +23,20 @@ def booking_view(request):
             end_time = end_time,
             guests = guests,
         )
+
+        # existing_booking = Booking.objects.filter(
+        # date = date,
+        # start_time = start_time,
+        # end_time = end_time
+        # ).exists()
+
+        # if existing_booking:
+
+        #     messages.error(request, "This time slot is already booked!")
+
+        #     return redirect('/booking/')
+        
+
         messages.success(request, "Booking Successful!")
         return redirect('booking_success')
         
@@ -31,3 +45,5 @@ def booking_view(request):
 
 def booking_success(request):
     return render(request, 'booking/success.html')
+
+

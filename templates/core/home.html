@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="text-warning">Special Offers</h1>
-<p>Grab yourself a bargain</p>
+    <h1 class="text-warning">Special Offers</h1>
+    <p>Grab yourself a bargain</p>
+<div class="row">
+
+    {% for item in specials %}
+
+        <div class="col-md-4">
+
+            <div class="card">
+
+                {% if item.image %}
+
+                    <img src="{{ item.image.url }}"
+                         class="card-img-top">
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h5>{{ item.name }}</h5>
+
+                    <p>{{ item.description }}</p>
+
+                    <strong>£{{ item.price }}</strong>
+
+                    <a href="{% url 'add_to_cart' item.id %}"
+                       class="btn btn-warning w-100 mt-2">
+
+                        Order Now
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
 {% endblock %}
