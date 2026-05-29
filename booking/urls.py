@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import booking_view, booking_success, cancel_booking
 
 urlpatterns = [
-    path('', views.booking_view, name='booking'),
-    path('success', views.booking_success, name='booking_success')
+    path('',  booking_view, name='booking'),
+    path('success', booking_success, name='booking_success'),
+    path('cancel<int:id>', cancel_booking, name='cancel_booking'),
 ]

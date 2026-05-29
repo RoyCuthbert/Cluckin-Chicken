@@ -1,49 +1,61 @@
 from django.shortcuts import render, redirect
 from .models import Booking
-from django.contrib import messages
+from .utils import get_available_slots
 
-# Create your views here.
+
 def booking_view(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        date = request.POST.get('date')
-        start_time = request.POST.get('start_time')
-        end_time = request.POST.get('end_time')
-        guests = request.POST.get('guests')
-        
-        if not name or not email:
-            return render(request, 'booking/booking.html')
-        
-        Booking.objects.create(
-            name = name,
-            email = email,
-            date = date,
-            start_time = start_time,
-            end_time = end_time,
-            guests = guests,
+
+    available_slots = []
+
+    selected_day = request.POST.get('day', '')
+
+    selected_date = request.POST.get('date', '')
+
+    if selected_day and selected_date:
+         
+        available_slots = get_available_slots(
+            selected_day,
+            selected_date
         )
 
-        # existing_booking = Booking.objects.filter(
-        # date = date,
-        # start_time = start_time,
-        # end_time = end_time
-        # ).exists()
+    if request.method == 'POST' and request.POST.get('time'):
 
-        # if existing_booking:
+            Booking.objects.create(
 
-        #     messages.error(request, "This time slot is already booked!")
+                name=request.POST.get('name'),
 
-        #     return redirect('/booking/')
-        
+                email=request.POST.get('email'),
 
-        messages.success(request, "Booking Successful!")
-        return redirect('booking_success')
-        
+                day=selected_day,
 
-    return render(request, 'booking/booking.html')
+                date=selected_date,
+
+                time=request.POST.get('time'),
+
+                guests=request.POST.get('guests'),
+
+            )
+
+            return redirect('booking_success')
+
+
+    return render(request, 'booking/booking.html', {
+
+        'available_slots': available_slots,
+        'selected_day': selected_day,
+        'selected_date': selected_date,
+        'name': request.POST.get('name', ''),
+        'email': request.POST.get('email', ''),
+        'guests': request.POST.get('guests', '')
+    })
 
 def booking_success(request):
-    return render(request, 'booking/success.html')
+    last_booking = Booking.objects.last()
+    return render(request, 'booking/success.html',{
+        'booking': last_booking
+    })
 
-
+def cancel_booking(request, id):
+    booking = Booking.objects.get(id=id)
+    booking.delete()
+    return redirect('/booking/')
