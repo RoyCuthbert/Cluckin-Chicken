@@ -99,6 +99,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://cluckin-chicken-3cf5c5195fcf.herokuapp.com/",
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
