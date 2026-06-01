@@ -95,7 +95,8 @@ DATABASES = {
 
 CSRF_TRUSTED_ORIGINS = [ 
     "https://*.codeinstitute-ide.net/",
-    "https://*.herokuapp.com"
+    "https://*.herokuapp.com",
+    "https://cluckin-chicken-3cf5c5195fcf.herokuapp.com/",
 ]
 
 # Password validation
