@@ -67,9 +67,17 @@
     </header>
     <!-- Main -->
     <main class="container py-4">
-        <hero>
-            <h1 class="text-danger">Welcome to Cluckin Chicken</h1>
-            <p>Best fried chicken in town 🍗</p>
+        <hero class="hero">
+            <!-- Background word -->
+            <h1 class="bg-text">Cluckin <br> Chicken</h1>
+            <div class="text-center hero-content">
+                <h1 class="text-warning">Welcome to Cluckin Chicken</h1>
+                <p>Best fried chicken in town 🍗</p>
+                <a href="/booking/">
+                <button type="button" class="hero-btn">Book a table</button>
+                </a>
+            </div>
+            
         </hero>
     {% block content %}{% endblock %}
     </main>
