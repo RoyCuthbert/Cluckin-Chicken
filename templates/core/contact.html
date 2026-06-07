@@ -17,15 +17,29 @@
         Basingstoke, UK</p>
 
         <hr>
+        
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-success">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
 
         <form method="POST">
             {% csrf_token %}
 
-            <input class="form-control mb-3" type="text" placeholder="Your Name">
+            <input class="form-control mb-3" type="text" name="name" placeholder="Your Name" required>
 
-            <input class="form-control mb-3" type="email" placeholder="Your Email">
+            <input class="form-control mb-3" type="email" name="email" placeholder="Your Email" required>
 
-            <textarea class="form-control mb-3" rows="5" placeholder="Message"></textarea>
+            <textarea class="form-control mb-3" rows="5" name="message" placeholder="Message" required></textarea>
 
             <button class="btn btn-danger">
                 Send Message
